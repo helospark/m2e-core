@@ -61,6 +61,7 @@ import org.eclipse.m2e.core.embedder.MavenModelManager;
 import org.eclipse.m2e.core.internal.archetype.ArchetypeCatalogFactory;
 import org.eclipse.m2e.core.internal.archetype.ArchetypeManager;
 import org.eclipse.m2e.core.internal.embedder.MavenImpl;
+import org.eclipse.m2e.core.internal.embedder.SynchronizedMavenImpl;
 import org.eclipse.m2e.core.internal.index.filter.ArtifactFilterManager;
 import org.eclipse.m2e.core.internal.index.nexus.IndexesExtensionReader;
 import org.eclipse.m2e.core.internal.index.nexus.IndexingTransferListener;
@@ -208,7 +209,7 @@ public class MavenPluginActivator extends Plugin {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    this.maven = new MavenImpl(mavenConfiguration);
+    this.maven = new SynchronizedMavenImpl(mavenConfiguration);
 
     // TODO eagerly reads workspace state cache
     this.managerImpl = new ProjectRegistryManager(maven, stateLocationDir, !updateProjectsOnStartup /* readState */,
